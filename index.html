@@ -1,0 +1,203 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title></title>
+  <meta name="Generator" content="Cocoa HTML Writer">
+  <meta name="CocoaVersion" content="2575.7">
+  <style type="text/css">
+    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica}
+    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; min-height: 14.0px}
+  </style>
+</head>
+<body>
+<p class="p1">&lt;!DOCTYPE html&gt;</p>
+<p class="p1">&lt;html lang="zh-HK"&gt;</p>
+<p class="p1">&lt;head&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;meta charset="UTF-8"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;title&gt;師門專屬 - 八字大運流年排盤&lt;/title&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;script src="https://unpkg.com/lunar-javascript/lunar.js"&gt;&lt;/script&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;style&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>body { font-family: "PingFang HK", "Microsoft JhengHei", sans-serif; background-color: #fdfbf7; color: #333; padding: 20px; }</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.container { max-width: 900px; margin: 0 auto; background: #fff; padding: 30px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }</p>
+<p class="p1"><span class="Apple-converted-space">        </span>h1 { text-align: center; color: #8b0000; font-size: 24px; }</p>
+<p class="p2"><span class="Apple-converted-space">        </span></p>
+<p class="p1"><span class="Apple-converted-space">        </span>.input-group { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin-bottom: 20px; align-items: center; }</p>
+<p class="p1"><span class="Apple-converted-space">        </span>input[type="number"], select { padding: 8px; border: 1px solid #ccc; border-radius: 4px; font-size: 16px; }</p>
+<p class="p1"><span class="Apple-converted-space">        </span>button { background-color: #8b0000; color: white; border: none; padding: 10px 20px; border-radius: 4px; font-size: 16px; cursor: pointer; transition: 0.3s; }</p>
+<p class="p1"><span class="Apple-converted-space">        </span>button:hover { background-color: #a52a2a; }</p>
+<p class="p2"><span class="Apple-converted-space">        </span></p>
+<p class="p1"><span class="Apple-converted-space">        </span>h2 { border-bottom: 2px solid #8b0000; padding-bottom: 5px; color: #8b0000; margin-top: 30px;}</p>
+<p class="p2"><span class="Apple-converted-space">        </span></p>
+<p class="p1"><span class="Apple-converted-space">        </span>table { width: 100%; border-collapse: collapse; margin-top: 15px; table-layout: fixed; }</p>
+<p class="p1"><span class="Apple-converted-space">        </span>th, td { border: 1px solid #ebd4d4; padding: 15px 5px; text-align: center; vertical-align: top; }</p>
+<p class="p1"><span class="Apple-converted-space">        </span>th { background-color: #fce4ec; color: #8b0000; }</p>
+<p class="p2"><span class="Apple-converted-space">        </span></p>
+<p class="p1"><span class="Apple-converted-space">        </span>.bazi-text { font-size: 26px; font-weight: bold; margin: 5px 0; }</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.ten-god { color: #d32f2f; font-size: 14px; font-weight: bold; }</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.hidden-stems-container { display: flex; justify-content: space-around; font-size: 14px; margin-top: 10px; }</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.hidden-item { display: flex; flex-direction: column; align-items: center; }</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.hidden-stem-char { font-weight: bold; font-size: 16px; margin: 3px 0; color: #555; }</p>
+<p class="p2"><span class="Apple-converted-space">        </span></p>
+<p class="p1"><span class="Apple-converted-space">        </span>.yun-info { font-size: 14px; color: #0066cc; margin-bottom: 10px; font-weight: bold; }</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.liunian-list { margin-top: 10px; text-align: left; font-size: 13px; line-height: 1.6; color: #444; border-top: 1px dashed #ccc; padding-top: 10px; }</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.liunian-item { display: flex; justify-content: space-between; }</p>
+<p class="p2"><span class="Apple-converted-space">        </span></p>
+<p class="p1"><span class="Apple-converted-space">        </span>.right-to-left { direction: rtl; }</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.right-to-left &gt; * { direction: ltr; }<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/style&gt;</p>
+<p class="p1">&lt;/head&gt;</p>
+<p class="p1">&lt;body&gt;</p>
+<p class="p2"><br></p>
+<p class="p1">&lt;div class="container"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;h1&gt;師門專屬八字排盤 (含大運流年)&lt;/h1&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="input-group"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;select id="gender"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;option value="1"&gt;男命&lt;/option&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;option value="0"&gt;女命&lt;/option&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/select&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;input type="number" id="year" placeholder="年 (例: 1990)" value="1990" style="width: 80px;"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;input type="number" id="month" placeholder="月" value="1" min="1" max="12" style="width: 60px;"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;input type="number" id="day" placeholder="日" value="1" min="1" max="31" style="width: 60px;"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;input type="number" id="hour" placeholder="時" value="12" min="0" max="23" style="width: 60px;"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;input type="number" id="minute" placeholder="分" value="0" min="0" max="59" style="width: 60px;"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;button onclick="calculateBazi()"&gt;排盤&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div id="result" style="display: none;"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;h2&gt;八字原局&lt;/h2&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;table class="right-to-left"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;tr&gt;&lt;th&gt;時柱&lt;/th&gt;&lt;th style="background-color: #ffcdd2;"&gt;日柱&lt;/th&gt;&lt;th&gt;月柱&lt;/th&gt;&lt;th&gt;年柱&lt;/th&gt;&lt;/tr&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;tr id="row-top-gods"&gt;&lt;/tr&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;tr id="row-stems"&gt;&lt;/tr&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;tr id="row-branches"&gt;&lt;/tr&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;tr id="row-hidden"&gt;&lt;/tr&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/table&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;h2&gt;大運與流年&lt;/h2&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;table class="right-to-left" id="dayun-table"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;!-- 大運內容將動態生成 --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/table&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1">&lt;script&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>// 師門地支藏干表</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const customHiddenStems = {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>"子": ["癸", "辛", "壬"], "丑": ["己", "辛", "癸"], "寅": ["甲", "丙", "己"],</p>
+<p class="p1"><span class="Apple-converted-space">        </span>"卯": ["乙", "癸", "甲"], "辰": ["己", "癸", "乙"], "巳": ["丙", "庚", "己"],</p>
+<p class="p1"><span class="Apple-converted-space">        </span>"午": ["丁", "乙", "丙"], "未": ["戊", "乙", "丁"], "申": ["庚", "壬", "戊"],</p>
+<p class="p1"><span class="Apple-converted-space">        </span>"酉": ["辛", "丁", "庚"], "戌": ["戊", "丁", "辛"], "亥": ["壬", "甲", "戊"]</p>
+<p class="p1"><span class="Apple-converted-space">    </span>};</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>const stemsData = {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>'甲': { element: '木', polarity: 1 }, '乙': { element: '木', polarity: 0 },</p>
+<p class="p1"><span class="Apple-converted-space">        </span>'丙': { element: '火', polarity: 1 }, '丁': { element: '火', polarity: 0 },</p>
+<p class="p1"><span class="Apple-converted-space">        </span>'戊': { element: '土', polarity: 1 }, '己': { element: '土', polarity: 0 },</p>
+<p class="p1"><span class="Apple-converted-space">        </span>'庚': { element: '金', polarity: 1 }, '辛': { element: '金', polarity: 0 },</p>
+<p class="p1"><span class="Apple-converted-space">        </span>'壬': { element: '水', polarity: 1 }, '癸': { element: '水', polarity: 0 }</p>
+<p class="p1"><span class="Apple-converted-space">    </span>};</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>const generates = { '木': '火', '火': '土', '土': '金', '金': '水', '水': '木' };</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const controls = { '木': '土', '土': '水', '水': '火', '火': '金', '金': '木' };</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>function getTenGod(dayMaster, targetStem) {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>if (!dayMaster || !targetStem) return "";</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const dm = stemsData[dayMaster];</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const target = stemsData[targetStem];</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const isSamePolarity = dm.polarity === target.polarity;</p>
+<p class="p2"><span class="Apple-converted-space">        </span></p>
+<p class="p1"><span class="Apple-converted-space">        </span>if (dm.element === target.element) return isSamePolarity ? '比肩' : '劫財';</p>
+<p class="p1"><span class="Apple-converted-space">        </span>if (generates[dm.element] === target.element) return isSamePolarity ? '食神' : '傷官';</p>
+<p class="p1"><span class="Apple-converted-space">        </span>if (generates[target.element] === dm.element) return isSamePolarity ? '偏印' : '正印';</p>
+<p class="p1"><span class="Apple-converted-space">        </span>if (controls[dm.element] === target.element) return isSamePolarity ? '偏財' : '正財';</p>
+<p class="p1"><span class="Apple-converted-space">        </span>if (controls[target.element] === dm.element) return isSamePolarity ? '七殺' : '正官';</p>
+<p class="p1"><span class="Apple-converted-space">        </span>return "";</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>function renderHiddenStems(dayMaster, branch) {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>let hiddenStems = customHiddenStems[branch] || [];</p>
+<p class="p1"><span class="Apple-converted-space">        </span>let html = '&lt;div class="hidden-stems-container"&gt;';</p>
+<p class="p1"><span class="Apple-converted-space">        </span>hiddenStems.forEach(hs =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>html += `&lt;div class="hidden-item"&gt;&lt;span class="hidden-stem-char"&gt;${hs}&lt;/span&gt;&lt;span class="ten-god"&gt;${getTenGod(dayMaster, hs)}&lt;/span&gt;&lt;/div&gt;`;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>});</p>
+<p class="p1"><span class="Apple-converted-space">        </span>html += '&lt;/div&gt;';</p>
+<p class="p1"><span class="Apple-converted-space">        </span>return html;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>function calculateBazi() {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const gender = parseInt(document.getElementById('gender').value);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const y = parseInt(document.getElementById('year').value);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const m = parseInt(document.getElementById('month').value);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const d = parseInt(document.getElementById('day').value);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const h = parseInt(document.getElementById('hour').value);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const min = parseInt(document.getElementById('minute').value);</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>const solar = Solar.fromYmdHms(y, m, d, h, min, 0);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const lunar = solar.getLunar();</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const bazi = lunar.getEightChar();</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const yun = bazi.getYun(gender); // 根據性別起運</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>const pillars = [</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ name: "時", stem: bazi.getTimeGan(), branch: bazi.getTimeZhi() },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ name: "日", stem: bazi.getDayGan(), branch: bazi.getDayZhi() },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ name: "月", stem: bazi.getMonthGan(), branch: bazi.getMonthZhi() },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ name: "年", stem: bazi.getYearGan(), branch: bazi.getYearZhi() }</p>
+<p class="p1"><span class="Apple-converted-space">        </span>];</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>const dayMaster = pillars[1].stem;<span class="Apple-converted-space"> </span></p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>// 1. 渲染原局</p>
+<p class="p1"><span class="Apple-converted-space">        </span>let htmlTopGods = '', htmlStems = '', htmlBranches = '', htmlHidden = '';</p>
+<p class="p1"><span class="Apple-converted-space">        </span>pillars.forEach((p, index) =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>htmlTopGods += `&lt;td&gt;&lt;span class="ten-god"&gt;${index === 1 ? '日主' : getTenGod(dayMaster, p.stem)}&lt;/span&gt;&lt;/td&gt;`;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>htmlStems += `&lt;td&gt;&lt;div class="bazi-text"&gt;${p.stem}&lt;/div&gt;&lt;/td&gt;`;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>htmlBranches += `&lt;td&gt;&lt;div class="bazi-text"&gt;${p.branch}&lt;/div&gt;&lt;/td&gt;`;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>htmlHidden += `&lt;td&gt;${renderHiddenStems(dayMaster, p.branch)}&lt;/td&gt;`;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>});</p>
+<p class="p1"><span class="Apple-converted-space">        </span>document.getElementById('row-top-gods').innerHTML = htmlTopGods;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>document.getElementById('row-stems').innerHTML = htmlStems;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>document.getElementById('row-branches').innerHTML = htmlBranches;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>document.getElementById('row-hidden').innerHTML = htmlHidden;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>// 2. 渲染大運與流年 (取首 8 柱大運)</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const daYunArr = yun.getDaYun();</p>
+<p class="p1"><span class="Apple-converted-space">        </span>let yunHtml = '&lt;tr&gt;';</p>
+<p class="p2"><span class="Apple-converted-space">        </span></p>
+<p class="p1"><span class="Apple-converted-space">        </span>// 略過第一個預設小運 (index 0通常是起運前)，由 index 1 開始</p>
+<p class="p1"><span class="Apple-converted-space">        </span>for (let i = 1; i &lt;= 8 &amp;&amp; i &lt; daYunArr.length; i++) {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const dy = daYunArr[i];</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const dyStem = dy.getGan();</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const dyBranch = dy.getZhi();</p>
+<p class="p2"><span class="Apple-converted-space">            </span></p>
+<p class="p1"><span class="Apple-converted-space">            </span>// 獲取此大運的流年</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const liuNianArr = dy.getLiuNian();</p>
+<p class="p1"><span class="Apple-converted-space">            </span>let lnStr = '&lt;div class="liunian-list"&gt;';</p>
+<p class="p1"><span class="Apple-converted-space">            </span>liuNianArr.forEach(ln =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>lnStr += `&lt;div class="liunian-item"&gt;&lt;span&gt;${ln.getYear()}年&lt;/span&gt; &lt;span&gt;${ln.getGanZhi()}&lt;/span&gt;&lt;/div&gt;`;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>});</p>
+<p class="p1"><span class="Apple-converted-space">            </span>lnStr += '&lt;/div&gt;';</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>yunHtml += `</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;td&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="yun-info"&gt;${dy.getStartAge()}歲 (${dy.getStartYear()}年)&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;span class="ten-god"&gt;${getTenGod(dayMaster, dyStem)}&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="bazi-text"&gt;${dyStem}&lt;br&gt;${dyBranch}&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>${renderHiddenStems(dayMaster, dyBranch)}</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>${lnStr}</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/td&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>`;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>yunHtml += '&lt;/tr&gt;';</p>
+<p class="p1"><span class="Apple-converted-space">        </span>document.getElementById('dayun-table').innerHTML = yunHtml;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>document.getElementById('result').style.display = 'block';</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p1">&lt;/script&gt;</p>
+<p class="p2"><br></p>
+<p class="p1">&lt;/body&gt;</p>
+<p class="p1">&lt;/html&gt;</p>
+</body>
+</html>
