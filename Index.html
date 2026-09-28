@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>師門專屬 - 八字大運流年排盤</title>
+    <script src="https://unpkg.com/lunar-javascript/lunar.js"></script>
+    <style>
+        body { font-family: "PingFang HK", "Microsoft JhengHei", sans-serif; background-color: #fdfbf7; color: #333; padding: 20px; }
+        .container { max-width: 900px; margin: 0 auto; background: #fff; padding: 30px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
+        h1 { text-align: center; color: #8b0000; font-size: 24px; }
+        
+        .input-group { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin-bottom: 20px; align-items: center; }
+        input[type="number"], select { padding: 8px; border: 1px solid #ccc; border-radius: 4px; font-size: 16px; }
+        button { background-color: #8b0000; color: white; border: none; padding: 10px 20px; border-radius: 4px; font-size: 16px; cursor: pointer; transition: 0.3s; }
+        button:hover { background-color: #a52a2a; }
+        
+        h2 { border-bottom: 2px solid #8b0000; padding-bottom: 5px; color: #8b0000; margin-top: 30px;}
+        
+        table { width: 100%; border-collapse: collapse; margin-top: 15px; table-layout: fixed; }
+        th, td { border: 1px solid #ebd4d4; padding: 15px 5px; text-align: center; vertical-align: top; }
+        th { background-color: #fce4ec; color: #8b0000; }
+        
+        .bazi-text { font-size: 26px; font-weight: bold; margin: 5px 0; }
+        .ten-god { color: #d32f2f; font-size: 14px; font-weight: bold; }
+        .hidden-stems-container { display: flex; justify-content: space-around; font-size: 14px; margin-top: 10px; }
+        .hidden-item { display: flex; flex-direction: column; align-items: center; }
+        .hidden-stem-char { font-weight: bold; font-size: 16px; margin: 3px 0; color: #555; }
+        
+        .yun-info { font-size: 14px; color: #0066cc; margin-bottom: 10px; font-weight: bold; }
+        .liunian-list { margin-top: 10px; text-align: left; font-size: 13px; line-height: 1.6; color: #444; border-top: 1px dashed #ccc; padding-top: 10px; }
+        .liunian-item { display: flex; justify-content: space-between; }
+        
+        .right-to-left { direction: rtl; }
+        .right-to-left > * { direction: ltr; } 
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>師門專屬八字排盤 (含大運流年)</h1>
+    <div class="input-group">
+        <select id="gender">
+            <option value="1">男命</option>
+            <option value="0">女命</option>
+        </select>
+        <input type="number" id="year" placeholder="年 (例: 1990)" value="1990" style="width: 80px;">
+        <input type="number" id="month" placeholder="月" value="1" min="1" max="12" style="width: 60px;">
+        <input type="number" id="day" placeholder="日" value="1" min="1" max="31" style="width: 60px;">
+        <input type="number" id="hour" placeholder="時" value="12" min="0" max="23" style="width: 60px;">
+        <input type="number" id="minute" placeholder="分" value="0" min="0" max="59" style="width: 60px;">
+        <button onclick="calculateBazi()">排盤</button>
+    </div>
+
+    <div id="result" style="display: none;">
+        <h2>八字原局</h2>
+        <table class="right-to-left">
+            <tr><th>時柱</th><th style="background-color: #ffcdd2;">日柱</th><th>月柱</th><th>年柱</th></tr>
+            <tr id="row-top-gods"></tr>
+            <tr id="row-stems"></tr>
+            <tr id="row-branches"></tr>
+            <tr id="row-hidden"></tr>
+        </table>
+
+        <h2>大運與流年</h2>
+        <table class="right-to-left" id="dayun-table">
+            <!-- 大運內容將動態生成 -->
+        </table>
+    </div>
+</div>
+
+<script>
+    const customHiddenStems = {
+        "子": ["癸", "辛", "壬"], "丑": ["己", "辛", "癸"], "寅": ["甲", "丙", "己"],
+        "卯": ["乙", "癸", "甲"], "辰": ["己", "癸", "乙"], "巳": ["丙", "庚", "己"],
+        "午": ["丁", "乙", "丙"], "未": ["戊", "乙", "丁"], "申": ["庚", "壬", "戊"],
+        "酉": ["辛", "丁", "庚"], "戌": ["戊", "丁", "辛"], "亥": ["壬", "甲", "戊"]
+    };
+
+    const stemsData = {
+        '甲': { element: '木', polarity: 1 }, '乙': { element: '木', polarity: 0 },
+        '丙': { element: '火', polarity: 1 }, '丁': { element: '火', polarity: 0 },
+        '戊': { element: '土', polarity: 1 }, '己': { element: '土', polarity: 0 },
+        '庚': { element: '金', polarity: 1 }, '辛': { element: '金', polarity: 0 },
+        '壬': { element: '水', polarity: 1 }, '癸': { element: '水', polarity: 0 }
+    };
+
+    const generates = { '木': '火', '火': '土', '土': '金', '金': '水', '水': '木' };
+    const controls = { '木': '土', '土': '水', '水': '火', '火': '金', '金': '木' };
+
+    function getTenGod(dayMaster, targetStem) {
+        if (!dayMaster || !targetStem) return "";
+        const dm = stemsData[dayMaster];
+        const target = stemsData[targetStem];
+        const isSamePolarity = dm.polarity === target.polarity;
+        
+        if (dm.element === target.element) return isSamePolarity ? '比肩' : '劫財';
+        if (generates[dm.element] === target.element) return isSamePolarity ? '食神' : '傷官';
+        if (generates[target.element] === dm.element) return isSamePolarity ? '偏印' : '正印';
+        if (controls[dm.element] === target.element) return isSamePolarity ? '偏財' : '正財';
+        if (controls[target.element] === dm.element) return isSamePolarity ? '七殺' : '正官';
+        return "";
+    }
+
+    function renderHiddenStems(dayMaster, branch) {
+        let hiddenStems = customHiddenStems[branch] || [];
+        let html = '<div class="hidden-stems-container">';
+        hiddenStems.forEach(hs => {
+            html += `<div class="hidden-item"><span class="hidden-stem-char">${hs}</span><span class="ten-god">${getTenGod(dayMaster, hs)}</span></div>`;
+        });
+        html += '</div>';
+        return html;
+    }
+
+    function calculateBazi() {
+        const gender = parseInt(document.getElementById('gender').value);
+        const y = parseInt(document.getElementById('year').value);
+        const m = parseInt(document.getElementById('month').value);
+        const d = parseInt(document.getElementById('day').value);
+        const h = parseInt(document.getElementById('hour').value);
+        const min = parseInt(document.getElementById('minute').value);
+
+        const solar = Solar.fromYmdHms(y, m, d, h, min, 0);
+        const lunar = solar.getLunar();
+        const bazi = lunar.getEightChar();
+        const yun = bazi.getYun(gender);
+
+        const pillars = [
+            { name: "時", stem: bazi.getTimeGan(), branch: bazi.getTimeZhi() },
+            { name: "日", stem: bazi.getDayGan(), branch: bazi.getDayZhi() },
+            { name: "月", stem: bazi.getMonthGan(), branch: bazi.getMonthZhi() },
+            { name: "年", stem: bazi.getYearGan(), branch: bazi.getYearZhi() }
+        ];
+
+        const dayMaster = pillars[1].stem; 
+
+        let htmlTopGods = '', htmlStems = '', htmlBranches = '', htmlHidden = '';
+        pillars.forEach((p, index) => {
+            htmlTopGods += `<td><span class="ten-god">${index === 1 ? '日主' : getTenGod(dayMaster, p.stem)}</span></td>`;
+            htmlStems += `<td><div class="bazi-text">${p.stem}</div></td>`;
+            htmlBranches += `<td><div class="bazi-text">${p.branch}</div></td>`;
+            htmlHidden += `<td>${renderHiddenStems(dayMaster, p.branch)}</td>`;
+        });
+        document.getElementById('row-top-gods').innerHTML = htmlTopGods;
+        document.getElementById('row-stems').innerHTML = htmlStems;
+        document.getElementById('row-branches').innerHTML = htmlBranches;
+        document.getElementById('row-hidden').innerHTML = htmlHidden;
+
+        const daYunArr = yun.getDaYun();
+        let yunHtml = '<tr>';
+        
+        for (let i = 1; i <= 8 && i < daYunArr.length; i++) {
+            const dy = daYunArr[i];
+            const dyStem = dy.getGan();
+            const dyBranch = dy.getZhi();
+            
+            const liuNianArr = dy.getLiuNian();
+            let lnStr = '<div class="liunian-list">';
+            liuNianArr.forEach(ln => {
+                lnStr += `<div class="liunian-item"><span>${ln.getYear()}年</span> <span>${ln.getGanZhi()}</span></div>`;
+            });
+            lnStr += '</div>';
+
+            yunHtml += `
+                <td>
+                    <div class="yun-info">${dy.getStartAge()}歲 (${dy.getStartYear()}年)</div>
+                    <span class="ten-god">${getTenGod(dayMaster, dyStem)}</span>
+                    <div class="bazi-text">${dyStem}<br>${dyBranch}</div>
+                    ${renderHiddenStems(dayMaster, dyBranch)}
+                    ${lnStr}
+                </td>
+            `;
+        }
+        yunHtml += '</tr>';
+        document.getElementById('dayun-table').innerHTML = yunHtml;
+
+        document.getElementById('result').style.display = 'block';
+    }
+</script>
+
+</body>
+</html>
