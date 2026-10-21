@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<html lang="zh-Hant">
-<head>
+<!DOCTYPE html><html lang="zh-Hant"><head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>治癒系專業八字排盤</title>
@@ -42,11 +40,7 @@
     
     .path-line { stroke-dasharray: 1000; stroke-dashoffset: 1000; animation: drawLine 1.2s ease forwards; }
     @keyframes drawLine { to { stroke-dashoffset: 0; } }
-  </style>
-</head>
-<body class="p-3 sm:p-8 min-h-screen">
-
-<div id="app" class="max-w-6xl mx-auto space-y-6 sm:space-y-8">
+  </style></head><body class="p-3 sm:p-8 min-h-screen"><div id="app" class="max-w-6xl mx-auto space-y-6 sm:space-y-8">
   <header class="text-center my-6 sm:my-8">
     <h1 class="text-3xl sm:text-4xl font-extrabold tracking-wide title-gradient drop-shadow-sm">治癒系八字排盤</h1>
     <p class="text-xs sm:text-sm text-slate-500 mt-3 font-semibold tracking-widest">全息一體化 ‧ 視覺圖解 ‧ 戰術定格</p>
@@ -596,12 +590,7 @@
         <button @click="activeModal = null" class="w-full btn-gradient py-3 rounded-2xl text-sm sm:text-base font-extrabold">知道啦 🌸</button>
       </div>
     </div>
-  </div>
-
-</div>
-
-<script>
-const { createApp, ref, computed, watch, onMounted } = Vue;
+  </div></div><script>const { createApp, ref, computed, watch, onMounted } = Vue;
 
 createApp({
   setup() {
@@ -709,17 +698,17 @@ createApp({
       '己':{e:'土',y:1},'庚':{e:'金',y:0},'辛':{e:'金',y:1},'壬':{e:'水',y:0},'癸':{e:'水',y:1}
     };
 
-    const getShiShen = (dayStem, targetStem) => {
-      if (!dayStem || !targetStem || !STEM_PROPS[dayStem] || !STEM_PROPS[targetStem]) return '';
-      if (dayStem === targetStem) return '比肩';
+    const getShiShen = (dayGan, targetStem) => {
+      if (!dayGan || !targetStem || !STEM_PROPS[dayGan] || !STEM_PROPS[targetStem]) return '';
+      if (dayGan === targetStem) return '比肩';
       const cat = {
         '木':{木:'劫',火:'傷',土:'財',金:'官',水:'印'},
         '火':{火:'劫',土:'傷',金:'財',水:'官',木:'印'},
         '土':{土:'劫',金:'傷',水:'財',木:'官',火:'印'},
         '金':{金:'劫',水:'傷',木:'財',火:'官',土:'印'},
         '水':{水:'劫',木:'傷',火:'財',土:'官',金:'印'}
-      }[STEM_PROPS[dayStem].e][STEM_PROPS[targetStem].e];
-      const same = STEM_PROPS[dayStem].y === STEM_PROPS[targetStem].y;
+      }[STEM_PROPS[dayGan].e][STEM_PROPS[targetStem].e];
+      const same = STEM_PROPS[dayGan].y === STEM_PROPS[targetStem].y;
       return { '劫':same?'比肩':'劫財', '傷':same?'食神':'傷官', '財':same?'偏財':'正財', '官':same?'七殺':'正官', '印':same?'偏印':'正印' }[cat];
     };
 
@@ -730,6 +719,13 @@ createApp({
       const dmElem = STEM_PROPS[dayGan].e;
       const elemOrder = ['木', '火', '土', '金', '水'];
       return { '比劫': elemOrder[elemOrder.indexOf(dmElem)], '食傷': elemOrder[(elemOrder.indexOf(dmElem) + 1) % 5], '財星': elemOrder[(elemOrder.indexOf(dmElem) + 2) % 5], '官殺': elemOrder[(elemOrder.indexOf(dmElem) + 3) % 5], '印星': elemOrder[(elemOrder.indexOf(dmElem) + 4) % 5] }[categoryName] || '';
+    };
+
+    const checkElemIsAlly = (elem) => {
+      if (!result.value || !result.value.dayGan) return false;
+      const dmElem = STEM_PROPS[result.value.dayGan].e;
+      const shengMap = { '木': '水', '火': '木', '土': '火', '金': '土', '水': '金' };
+      return elem === dmElem || elem === shengMap[dmElem];
     };
 
     const getCategoryElemInfo = (catKey) => {
@@ -1699,7 +1695,7 @@ createApp({
 
     return { 
       name, inputMode, manualPillars, manualGender, manualStartAge, manualBaseYear, stems, branches,
-      birthTime, gender, result, selectedDaYun, selectedLiuNian, selectedLiuYue, currentLiuNianObj, currentLiuYueList, currentLiuYueObj, selectedScorePillar, selectedMatrixPillar, boardTitle, diagramData,
+      birthTime, gender, result, selectedDaYun, selectedLiuNian, selectedLiuYue, currentLiuNianObj, currentLiuYueList, currentLiuYueObj, selectedMatrixPillar, boardTitle, diagramData,
       manualPatternOverride, ALL_PATTERNS, activeModal,
       displayPillars, stemRelations, branchCombos, branchClashes, circuitDiagnostics, injuryAlerts, quantScore, pillarScores, godsInfo, tenGodsTactics, effectivePillars, transformedInfo,
       isFiveElementsComplete, presentElementsStr, missingElementsStr, fiveElementsReport, iso7Report,
@@ -1709,7 +1705,4 @@ createApp({
       getCustomCangGan: zhi => CUSTOM_CANG_GAN[zhi] || [] 
     };
   }
-}).mount('#app');
-</script>
-</body>
-</html>
+}).mount('#app');</script></body></html>
